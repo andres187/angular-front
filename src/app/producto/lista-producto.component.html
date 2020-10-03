@@ -1,0 +1,23 @@
+<app-menu></app-menu>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Borrar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <th scope="row">{{producto.id}}</th>
+        <td>{{producto.nombre}}</td>
+        <td>{{producto.precio}}</td>
+        <td><button class="btn btn-outline-warning" routerLink="/editar/{{producto.id}}" routerLinkActive="router-link-active" ><i class="far fa-edit"></i> Editar</button></td>
+        <td><button class="btn btn-outline-danger" (click)="borrar(producto.id)" ><i class="far fa-trash-alt"></i> Borrar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
