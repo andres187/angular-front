@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './auth/login.component';
-import { RegisterComponent } from './auth/register.component';
-import { ProdGuardService as guard } from './guards/prod-guard.service';
-import { IndexComponent } from './index/index.component';
-import { DetalleProductoComponent } from './producto/detalle-producto.component';
-import { EditarProductoComponent } from './producto/editar-producto.component';
-import { ListaProductoComponent } from './producto/lista-producto.component';
-import { NuevoProductoComponent } from './producto/nuevo-producto.component';
+import { LoginComponent } from '@app/auth/login.component';
+import { RegisterComponent } from '@app/auth/register.component';
+import { ProdGuardService as guard } from '@app/guards/prod-guard.service';
+import { IndexComponent } from '@app/index/index.component';
+import { DetalleProductoComponent } from '@app/producto/detalle-producto.component';
+import { EditarProductoComponent } from '@app/producto/editar-producto.component';
+import { ListaProductoComponent } from '@app/producto/lista-producto.component';
+import { NuevoProductoComponent } from '@app/producto/nuevo-producto.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent},

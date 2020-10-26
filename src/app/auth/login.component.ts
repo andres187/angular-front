@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginUser } from '@app/models/login-user';
+import { TokenDto } from '@app/models/token-dto';
+import { AuthService } from '@app/service/auth.service';
+import { OauthService } from '@app/service/oauth.service';
+import { TokenService } from '@app/service/token.service';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
-import { LoginUser } from '../models/login-user';
-import { TokenDto } from '../models/token-dto';
-import { AuthService } from '../service/auth.service';
-import { OauthService } from '../service/oauth.service';
-import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-login',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Producto } from '@app/models/producto';
+import { ProductoService } from '@app/service/producto.service';
+import { TokenService } from '@app/service/token.service';
 import { ToastrService } from 'ngx-toastr';
-import { Producto } from '../models/producto';
-import { ProductoService } from '../service/producto.service';
-import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-lista-producto',

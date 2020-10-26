@@ -1,24 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from '@app/app-routing.module';
+import { AppComponent } from '@app/app.component';
 
-import { ListaProductoComponent } from './producto/lista-producto.component';
-import { DetalleProductoComponent } from './producto/detalle-producto.component';
-import { NuevoProductoComponent } from './producto/nuevo-producto.component';
-import { EditarProductoComponent } from './producto/editar-producto.component';
-import { interceptorProvider } from './interceptors/prod-interceptor.service';
+import { ListaProductoComponent } from '@app/producto/lista-producto.component';
+import { DetalleProductoComponent } from '@app/producto/detalle-producto.component';
+import { NuevoProductoComponent } from '@app/producto/nuevo-producto.component';
+import { EditarProductoComponent } from '@app/producto/editar-producto.component';
+import { interceptorProvider } from '@app/interceptors/prod-interceptor.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { ToastrModule } from 'ngx-toastr';
-import { LoginComponent } from './auth/login.component';
-import { RegisterComponent } from './auth/register.component';
-import { MenuComponent } from './menu/menu.component';
-import { IndexComponent } from './index/index.component';
+import { LoginComponent } from '@app/auth/login.component';
+import { RegisterComponent } from '@app/auth/register.component';
+import { MenuComponent } from '@app/menu/menu.component';
+import { IndexComponent } from '@app/index/index.component';
 import { AmazonLoginProvider, FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
 @NgModule({
@@ -40,7 +42,9 @@ import { AmazonLoginProvider, FacebookLoginProvider, GoogleLoginProvider, Social
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [
     interceptorProvider,

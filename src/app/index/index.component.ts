@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from '@app/service/token.service';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
-import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-index',
