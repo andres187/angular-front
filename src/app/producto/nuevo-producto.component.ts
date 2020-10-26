@@ -13,6 +13,11 @@ export class NuevoProductoComponent implements OnInit {
 
   nombre: string = '';
   precio: number = null;
+  lyric: string = '';
+  composers: string = '';
+  producers: string = '';
+  language: number = null;
+  gender: number = null;
 
   constructor(
     private productoService: ProductoService,

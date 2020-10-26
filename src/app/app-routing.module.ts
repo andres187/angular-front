@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'lista', component: ListaProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']}},
   {path: 'detalle/:id', component: DetalleProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']}},
-  {path: 'nuevo', component: NuevoProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']}},
+  {path: 'nuevo', component: NuevoProductoComponent, canActivate: [guard], data: {expectedRole: ['admin', 'user']}},
   {path: 'editar/:id', component: EditarProductoComponent, canActivate: [guard], data: {expectedRole: ['admin']}},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];

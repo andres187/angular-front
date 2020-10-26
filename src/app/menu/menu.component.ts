@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { TokenService } from '../service/token.service';
 
 @Component({
@@ -8,11 +10,16 @@ import { TokenService } from '../service/token.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private tokenService: TokenService) { }
+  constructor(private tokenService: TokenService,
+    private socialAuthService: SocialAuthService,
+    private router: Router) { }
 
   isLogged = false;
   roles: string[];
   isAdmin = false;
+  
+  socialUser: SocialUser;
+  userLogged: SocialUser;
 
   ngOnInit(): void {
     if(this.tokenService.getToken()){
@@ -23,13 +30,12 @@ export class MenuComponent implements OnInit {
           this.isAdmin = true;
         }
       })
-    }else{
-      this.isLogged = false;
     }
   }
 
   onLogout(): void{
     this.tokenService.logOut();
+    this.socialAuthService.signOut();
     window.location.reload();
   }
 

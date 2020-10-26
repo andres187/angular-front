@@ -19,6 +19,7 @@ import { LoginComponent } from './auth/login.component';
 import { RegisterComponent } from './auth/register.component';
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
+import { AmazonLoginProvider, FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -35,12 +36,33 @@ import { IndexComponent } from './index/index.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SocialLoginModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
     FormsModule
   ],
-  providers: [interceptorProvider],
+  providers: [
+    interceptorProvider,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '609546117576-s47ql8dcujeo7f50ftqpgaekvom927o2.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('335496677713223'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

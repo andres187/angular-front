@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { TokenService } from '../service/token.service';
 
 @Component({
@@ -10,15 +11,15 @@ export class IndexComponent implements OnInit {
 
   isLogged = false;
   userName = '';
-  constructor(private tokenService: TokenService) { }
+  userLogged: SocialUser;
+
+  constructor(private tokenService: TokenService,
+    private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
     if(this.tokenService.getToken()){
       this.isLogged = true;
       this.userName = this.tokenService.getUserName();
-    }else{
-      this.isLogged = false;
-      this.userName = '';
     }
   }
 
