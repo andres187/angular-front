@@ -21,7 +21,8 @@ import { LoginComponent } from '@app/auth/login.component';
 import { RegisterComponent } from '@app/auth/register.component';
 import { MenuComponent } from '@app/menu/menu.component';
 import { IndexComponent } from '@app/index/index.component';
-import { AmazonLoginProvider, FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { AppStoreModule } from '@app/store/app-store.module';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,7 @@ import { AmazonLoginProvider, FacebookLoginProvider, GoogleLoginProvider, Social
     ToastrModule.forRoot(),
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument()
+    AppStoreModule
   ],
   providers: [
     interceptorProvider,
