@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TokenDto } from '@app/models/token-dto';
+import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 
 const cabecera = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
@@ -10,7 +11,7 @@ const cabecera = {headers: new HttpHeaders({'Content-Type' : 'application/json'}
 })
 export class OauthService {
 
-  oauthURL = 'http://localhost:8080/oauth/';
+  oauthURL = environment.api_server + 'oauth/';
 
   constructor(private httpCliente: HttpClient) { }
 
