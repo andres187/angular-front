@@ -40,13 +40,13 @@ export class EditarProductoComponent implements OnInit {
         this.toastr.success('Producto actualizado.', 'Ok', {
           timeOut: 3000
         });
-        this.router.navigate(['/lista']);
+        this.router.navigate(['/products']);
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Error', {
           timeOut: 3000
         });
-        this.router.navigate(['/lista']);
+        this.router.navigate(['/products']);
       }
     );
   }

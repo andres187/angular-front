@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 
-import { ListaProductoComponent } from '@app/producto/lista-producto.component';
-import { DetalleProductoComponent } from '@app/producto/detalle-producto.component';
-import { NuevoProductoComponent } from '@app/producto/nuevo-producto.component';
-import { EditarProductoComponent } from '@app/producto/editar-producto.component';
 import { interceptorProvider } from '@app/interceptors/prod-interceptor.service';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -23,11 +23,7 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, So
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ListaProductoComponent,
-    DetalleProductoComponent,
-    NuevoProductoComponent,
-    EditarProductoComponent,
+    AppComponent,    
     LoginComponent,
     RegisterComponent,
     MenuComponent,
@@ -41,7 +37,10 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, So
     ToastrModule.forRoot(),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([])
   ],
   providers: [
     interceptorProvider,

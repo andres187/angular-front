@@ -50,7 +50,11 @@ userLogged: SocialUser;
         this.tokenService.setUserName(data.userName);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
+        setTimeout(function(){
+          window.location.reload()
+        },2000);
         this.router.navigate(['/']);
+      
       },
       err => {
         this.isLogged = false;
@@ -70,7 +74,10 @@ userLogged: SocialUser;
             this.tokenService.setToken(res.value);
             this.tokenService.setUserName(this.socialUser.name);
             this.isLogged = true;
-            this.router.navigate(['/'])
+            setTimeout(function(){
+              window.location.reload()
+            },2000);
+            this.router.navigate(['/']);
           }
         ),
           (err: any) => {
@@ -95,6 +102,9 @@ userLogged: SocialUser;
             this.tokenService.setToken(res.value);
             this.tokenService.setUserName(this.socialUser.name);
             this.isLogged = true;
+            setTimeout(function(){
+              window.location.reload()
+            },2000);
             this.router.navigate(['/']);
           }
         ),
@@ -113,6 +123,7 @@ userLogged: SocialUser;
   logOut(): void{
     this.tokenService.logOut();
     this.socialAuthService.signOut();
+    window.location.reload();
   }
 
 }

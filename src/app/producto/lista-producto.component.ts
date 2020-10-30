@@ -4,6 +4,9 @@ import { ProductoService } from '@app/service/producto.service';
 import { TokenService } from '@app/service/token.service';
 import { ToastrService } from 'ngx-toastr';
 
+import { Store } from '@ngrx/store';
+import * as productActions  from '@app/producto/state/product.actions';
+
 @Component({
   selector: 'app-lista-producto',
   templateUrl: './lista-producto.component.html',
@@ -17,7 +20,8 @@ export class ListaProductoComponent implements OnInit {
 
   constructor(private productoService: ProductoService,
     private tokenService: TokenService,    
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private store: Store<any>) { }
 
   ngOnInit(): void {
     this.cargarProductos();
@@ -34,14 +38,8 @@ export class ListaProductoComponent implements OnInit {
   }
 
   cargarProductos(): void {
-    this.productoService.lista().subscribe(
-      data => {
-        this.productos = data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.store.dispatch(new productActions.LoadProducts());
+    this.store.subscribe(state => (this.productos = state.products.products));
   }
 
   borrar(id: number) {
