@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
@@ -13,7 +11,7 @@ import { EditarProductoComponent } from '@app/producto/editar-producto.component
 import { interceptorProvider } from '@app/interceptors/prod-interceptor.service';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { ToastrModule } from 'ngx-toastr';
@@ -22,7 +20,6 @@ import { RegisterComponent } from '@app/auth/register.component';
 import { MenuComponent } from '@app/menu/menu.component';
 import { IndexComponent } from '@app/index/index.component';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
-import { AppStoreModule } from '@app/store/app-store.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +41,7 @@ import { AppStoreModule } from '@app/store/app-store.module';
     ToastrModule.forRoot(),
     HttpClientModule,
     FormsModule,
-    AppStoreModule
+    ReactiveFormsModule
   ],
   providers: [
     interceptorProvider,
