@@ -4,6 +4,10 @@ import { Producto } from '@app/models/producto';
 import { ProductoService } from '@app/service/producto.service';
 import { ToastrService } from 'ngx-toastr';
 
+import * as productActions from '@app/producto/state/product.actions';
+import * as fromProduct from '@app/producto/state/product.reducer';
+import { Store } from '@ngrx/store';
+
 @Component({
   selector: 'app-nuevo-producto',
   templateUrl: './nuevo-producto.component.html',
@@ -22,7 +26,8 @@ export class NuevoProductoComponent implements OnInit {
   constructor(
     private productoService: ProductoService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private store: Store<fromProduct.AppState>
     ) { }
 
   ngOnInit(): void {
@@ -30,6 +35,9 @@ export class NuevoProductoComponent implements OnInit {
 
   onCreate(): void{
     const producto = new Producto(this.nombre, this.precio);
+
+    //this.store.dispatch(new productActions.CreateProduct(producto));
+
     this.productoService.save(producto).subscribe(
       data => {
         this.toastr.success('Producto creado.', 'Ok', {

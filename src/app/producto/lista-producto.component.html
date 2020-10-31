@@ -15,9 +15,9 @@
         <th scope="row">{{producto.id}}</th>
         <td>{{producto.nombre}}</td>
         <td>{{producto.precio}}</td>
-        <td *ngIf="isAdmin"><button class="btn btn-outline-warning" routerLink="/products/editar/{{producto.id}}" routerLinkActive="router-link-active" ><i class="far fa-edit"></i> Editar</button></td>        
+        <td *ngIf="isAdmin"><button class="btn btn-outline-warning" (click)="update(producto.id)" routerLinkActive="router-link-active" ><i class="far fa-edit"></i> Editar</button></td>        
         <td><button class="btn btn-outline-primary" routerLink="/products/detalle/{{producto.id}}" routerLinkActive="router-link-active" ><i class="far fa-eye"></i> Ver</button></td>
-        <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="borrar(producto.id)" ><i class="far fa-trash-alt"></i> Borrar</button></td>
+        <td *ngIf="isAdmin"><button class="btn btn-outline-danger" (click)="deleteProduct(producto.id)" ><i class="far fa-trash-alt"></i> Borrar</button></td>
       </tr>
     </tbody>
   </table>

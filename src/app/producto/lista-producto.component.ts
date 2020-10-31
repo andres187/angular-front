@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '@app/models/producto';
-import { ProductoService } from '@app/service/producto.service';
 import { TokenService } from '@app/service/token.service';
-import { ToastrService } from 'ngx-toastr';
 
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import * as productActions  from '@app/producto/state/product.actions';
 import * as fromProduct from '@app/producto/state/product.reducer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-producto',
@@ -18,17 +17,18 @@ import * as fromProduct from '@app/producto/state/product.reducer';
 export class ListaProductoComponent implements OnInit {
 
   products$: Observable<Producto[]>;
+  error$: Observable<String>;
 
   isAdmin = false;
   roles: string[];
 
-  constructor(private productoService: ProductoService,
+  constructor(
     private tokenService: TokenService,    
-    private toastr: ToastrService,
+    private router: Router,
     private store: Store<fromProduct.AppState>) { }
 
   ngOnInit(): void {
-    this.cargarProductos();
+    this.products();
     if(this.tokenService.getToken()){
       this.roles = this.tokenService.getAuthorities();
       this.roles.forEach(
@@ -41,26 +41,20 @@ export class ListaProductoComponent implements OnInit {
     }
   }
 
-  cargarProductos(): void {
+  products(): void {
     this.store.dispatch(new productActions.LoadProducts());
     this.products$ = this.store.pipe(select(fromProduct.getProducts));
+    this.error$ = this.store.pipe(select(fromProduct.getError));
   }
 
-  borrar(id: number) {
-    this.productoService.delete(id).subscribe(
-      data => {
-        this.toastr.success('Producto eliminado.', 'Ok', {
-          timeOut: 3000
-        });
-        this.cargarProductos();
-      },
-      err => {
-        this.toastr.success(err.error.mensaje, 'Error', {
-          timeOut: 3000
-        });
-        this.cargarProductos();
-      }
-    )
+  deleteProduct(id: number) {    
+    if (confirm("¿Seguro quieres eliminar este producto?")){
+      this.store.dispatch(new productActions.DeleteProduct(id));
+    }
+  }
+
+  update(id: number){    
+    this.router.navigate(['/products/editar', id]);
   }
 
 }
