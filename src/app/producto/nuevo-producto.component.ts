@@ -24,8 +24,6 @@ export class NuevoProductoComponent implements OnInit {
   gender: number = null;
 
   constructor(
-    private productoService: ProductoService,
-    private toastr: ToastrService,
     private router: Router,
     private store: Store<fromProduct.AppState>
     ) { }
@@ -36,22 +34,9 @@ export class NuevoProductoComponent implements OnInit {
   onCreate(): void{
     const producto = new Producto(this.nombre, this.precio);
 
-    //this.store.dispatch(new productActions.CreateProduct(producto));
+    this.store.dispatch(new productActions.CreateProduct(producto));
 
-    this.productoService.save(producto).subscribe(
-      data => {
-        this.toastr.success('Producto creado.', 'Ok', {
-          timeOut: 3000
-        });
-        this.router.navigate(['/']);
-      },
-      err => {
-        this.toastr.error(err.error.mensaje, 'Error', {
-          timeOut: 3000
-        });
-        this.router.navigate(['/']);
-      }
-    );
+    this.router.navigate(['/products']);
   }
 
 }

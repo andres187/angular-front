@@ -22,9 +22,8 @@ export class EditarProductoComponent implements OnInit {
 
   product$: Observable<Producto>;
   
-  constructor(private productoService: ProductoService,
+  constructor(
     private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService,
     private router: Router,
     private fb: FormBuilder,
     private store: Store<fromProduct.AppState>) { }
@@ -62,20 +61,10 @@ export class EditarProductoComponent implements OnInit {
       id: this.productForm.get("id").value
     };
 
-    this.productoService.update(id, updatedProduct).subscribe(
-      data => {
-        this.toastr.success('Producto actualizado.', 'Ok', {
-          timeOut: 3000
-        });
-        this.router.navigate(['/products']);
-      },
-      err => {
-        this.toastr.error(err.error.mensaje, 'Error', {
-          timeOut: 3000
-        });
-        this.router.navigate(['/products']);
-      }
-    );
+    this.store.dispatch(new productActions.UpdateProduct(updatedProduct));
+
+    this.router.navigate(['products']);
+
   }
 
 }

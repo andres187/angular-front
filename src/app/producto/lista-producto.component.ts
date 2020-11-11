@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import * as productActions  from '@app/producto/state/product.actions';
 import * as fromProduct from '@app/producto/state/product.reducer';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-producto',
@@ -25,7 +26,8 @@ export class ListaProductoComponent implements OnInit {
   constructor(
     private tokenService: TokenService,    
     private router: Router,
-    private store: Store<fromProduct.AppState>) { }
+    private store: Store<fromProduct.AppState>,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.products();
@@ -39,6 +41,16 @@ export class ListaProductoComponent implements OnInit {
         }
       );
     }
+
+    this.error$.subscribe(
+      data => {
+        if(data){
+          this.toastr.error("Ha ocurrido un error", 'Error', {
+            timeOut: 3000
+          });
+        }
+      }
+    )
   }
 
   products(): void {
