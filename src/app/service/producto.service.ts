@@ -25,7 +25,7 @@ export class ProductoService {
     return this.HttpClient.get<Producto>(this.productoUrl + `detailname/${nombre}`);
   }
 
-  public save(producto: Producto): Observable<any> {
+  public save(producto: FormData): Observable<any> {
     return this.HttpClient.post<any>(this.productoUrl + 'create', producto);
   }
 

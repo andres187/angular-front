@@ -56,7 +56,7 @@ export  class ProductEffect {
             productActions.ProductActionTypes.CREATE_PRODUCT
         ),
         map((action: productActions.CreateProduct) => action.payload),
-        mergeMap((product: Producto) => 
+        mergeMap((product: FormData) => 
             this.productService.save(product).pipe(
                 map(
                     (newProduct: Producto) =>

@@ -22,6 +22,7 @@ export class NuevoProductoComponent implements OnInit {
   producers: string = '';
   language: number = null;
   gender: number = null;
+  selectedFile: File;
 
   constructor(
     private router: Router,
@@ -31,10 +32,28 @@ export class NuevoProductoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
   onCreate(): void{
+    const productForm = new FormData();
+
+    productForm.append('product', new Blob(
+      [
+        JSON.stringify({
+          "nombre": this.nombre,
+          "precio": this.precio
+        })
+      ], {
+        type: "application/json"
+      }
+    ));
+    productForm.append('imageFile', this.selectedFile);
+
     const producto = new Producto(this.nombre, this.precio);
 
-    this.store.dispatch(new productActions.CreateProduct(producto));
+    this.store.dispatch(new productActions.CreateProduct(productForm));
 
     this.router.navigate(['/products']);
   }

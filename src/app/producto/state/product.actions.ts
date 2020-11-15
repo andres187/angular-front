@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+import { Action, props } from '@ngrx/store';
 
 import { Update } from '@ngrx/entity';
 
@@ -59,7 +59,7 @@ export class LoadProductFail implements Action {
 export class CreateProduct implements Action {
     readonly type = ProductActionTypes.CREATE_PRODUCT
 
-    constructor(public payload: Producto) {}
+    constructor(public payload: FormData){}
 }
 
 export class CreateProductSuccess implements Action {
