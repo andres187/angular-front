@@ -9,6 +9,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'products', loadChildren: () => import('@app/producto/products.module').then(m => m.ProductsModule)},
+  {path: 'subscribe', loadChildren: () => import('@app/subscribe/subscribe.module').then(m => m.SubscribeModule)},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
